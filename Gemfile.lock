@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    openai-compatible-errors (0.1.0)
+    openai-compatible-errors (0.1.1)
 
 GEM
   remote: https://rubygems.org/

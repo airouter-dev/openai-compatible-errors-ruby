@@ -2,6 +2,15 @@
 
 All notable changes to this gem are documented here.
 
+## [0.1.1] - 2026-08-09
+
+Documentation release.
+
+- Add contextual links to the API gateway, protocol references, replay-safety
+  research, and the maintained packages in other language ecosystems.
+- Keep the Ruby implementation and its zero-runtime-dependency contract
+  unchanged.
+
 ## [0.1.0] - 2026-08-09
 
 Initial public release.
@@ -18,4 +27,5 @@ Initial public release.
   without retaining generated output.
 - Provide bounded recursive log sanitization with cycle detection.
 
+[0.1.1]: https://github.com/airouter-dev/openai-compatible-errors-ruby/releases/tag/v0.1.1
 [0.1.0]: https://github.com/airouter-dev/openai-compatible-errors-ruby/releases/tag/v0.1.0

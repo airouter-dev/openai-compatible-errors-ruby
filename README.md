@@ -11,6 +11,24 @@ It does not send requests, sleep, retry automatically, buffer an entire stream,
 or retain a raw provider response. The caller remains responsible for
 idempotency, cancellation, budget accounting and request replay.
 
+## Project resources
+
+The [AI-ROUTER API gateway](https://ai-router.dev/) is the service context for
+the compatible-endpoint examples. The library itself remains transport-neutral:
+you can use it with any gateway or provider that follows the same API shape.
+
+For the protocol details behind the implementation, see the
+[OpenAI error-code guide](https://developers.openai.com/api/docs/guides/error-codes),
+the [MDN Retry-After reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Retry-After),
+and the [WHATWG Server-Sent Events specification](https://html.spec.whatwg.org/multipage/server-sent-events.html).
+For a worked replay-safety model, read the
+[LLM stream retry-safety walkthrough](https://ai-router.hashnode.dev/rust-llm-stream-retry-safety).
+
+The package is available from
+[RubyGems](https://rubygems.org/gems/openai-compatible-errors). Teams using PHP
+can compare the [native Composer implementation](https://packagist.org/packages/airouter/openai-compatible-errors);
+the two packages share the same safety boundary but do not share runtime code.
+
 ## Install
 
     gem "openai-compatible-errors"
@@ -200,6 +218,14 @@ after an unrecognized event can duplicate visible output.
 Use a full resilience library when you need circuit breaking, cancellation-aware
 sleep, hedging or request execution. Keep a provider SDK's native exception when
 one stable provider contract is all your application needs.
+
+## Related language packages
+
+- [JavaScript and TypeScript package on npm](https://www.npmjs.com/package/@ai-router/openai-compatible-errors)
+- [Python package on PyPI](https://pypi.org/project/openai-compatible-errors/)
+- [.NET package on NuGet](https://www.nuget.org/packages/AiRouter.OpenAICompatibleErrors/)
+- [JVM contract package on Maven Central](https://central.sonatype.com/artifact/dev.ai-router/openai-compatible-contract-junit)
+- [Rust stream guard on crates.io](https://crates.io/crates/llm-stream-guard)
 
 ## Development
 
