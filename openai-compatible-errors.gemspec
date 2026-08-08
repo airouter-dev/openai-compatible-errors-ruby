@@ -40,6 +40,6 @@ Gem::Specification.new do |spec|
   spec.files = included + Dir.glob("lib/**/*.rb") + Dir.glob("examples/**/*.rb")
   spec.files = spec.files.select { |path| File.file?(path) }.uniq.sort
   spec.test_files = Dir.glob("test/**/*.rb")
-  spec.add_development_dependency "minitest", "~> 5.14"
+  spec.add_development_dependency "minitest", "~> 5.26.1"
   spec.add_development_dependency "rake", "~> 13.0"
 end
