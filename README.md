@@ -23,6 +23,8 @@ the [MDN Retry-After reference](https://developer.mozilla.org/en-US/docs/Web/HTT
 and the [WHATWG Server-Sent Events specification](https://html.spec.whatwg.org/multipage/server-sent-events.html).
 For a worked replay-safety model, read the
 [LLM stream retry-safety walkthrough](https://ai-router.hashnode.dev/rust-llm-stream-retry-safety).
+The repository also includes a [Ruby failure-boundary deep dive](https://github.com/airouter-dev/openai-compatible-errors-ruby/blob/main/marketing/ruby-openai-compatible-api-errors-deep-dive.md)
+with the decision rationale and runnable boundary examples.
 
 The package is available from
 [RubyGems](https://rubygems.org/gems/openai-compatible-errors). Teams using PHP

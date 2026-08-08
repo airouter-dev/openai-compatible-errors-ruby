@@ -7,9 +7,10 @@ credits, a disconnected POST may already have reached the upstream service,
 and an SSE connection can fail after user-visible tokens have been rendered.
 
 This article explains the engineering boundary behind
-openai-compatible-errors on RubyGems. The gem is intentionally small at
-runtime (no HTTP client dependency), but it is not a blanket retry-everything
-helper.
+[openai-compatible-errors on RubyGems](https://rubygems.org/gems/openai-compatible-errors).
+The [AI-ROUTER API gateway](https://ai-router.dev/) is one compatible endpoint
+context, but the gem is intentionally small at runtime (no HTTP client
+dependency) and is not a blanket retry-everything helper.
 
 ## Why status-code-only retry logic loses money
 
@@ -51,7 +52,9 @@ credential redaction.
 
 ## Retry-After is evidence, not an order to sleep
 
-The gem parses seconds, HTTP dates and millisecond hints, but it never sleeps.
+The gem parses the formats described by the
+[MDN Retry-After reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Retry-After)
+and millisecond hints, but it never sleeps.
 The application owns cancellation and scheduling:
 
     plan = OpenAICompatibleErrors.decide_retry(error, context)
@@ -64,7 +67,8 @@ the remaining elapsed-time budget and maximum delay.
 
 ## SSE needs a separate replay state machine
 
-SSE is a sequence of framed events, not a JSON response. A parser that only
+SSE follows the [WHATWG Server-Sent Events specification](https://html.spec.whatwg.org/multipage/server-sent-events.html):
+it is a sequence of framed events, not a JSON response. A parser that only
 looks for [DONE] cannot distinguish an idle stream from one that emitted a
 partial completion. SSEInspector keeps:
 
@@ -100,3 +104,9 @@ with one. If it only talks to one provider with a stable native exception
 contract, the provider SDK may be enough. The value here is the explicit,
 auditable boundary when an application talks to multiple
 OpenAI-compatible endpoints.
+
+## Further reading
+
+- [OpenAI error-code guide](https://developers.openai.com/api/docs/guides/error-codes)
+- [PHP implementation on Packagist](https://packagist.org/packages/airouter/openai-compatible-errors)
+- [Cross-language package overview](https://github.com/airouter-dev/openai-compatible-errors-ruby#related-language-packages)
