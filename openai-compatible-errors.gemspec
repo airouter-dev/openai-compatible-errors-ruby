@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
     inspects Chat Completions or Responses SSE streams without retaining raw
     provider payloads.
   DESCRIPTION
-  spec.homepage = "https://github.com/airouter-dev/openai-compatible-errors-ruby"
+  spec.homepage = "https://ai-router.dev/"
   spec.required_ruby_version = ">= 3.0"
   spec.license = "MIT"
   spec.require_paths = ["lib"]
@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
     "bug_tracker_uri" => "https://github.com/airouter-dev/openai-compatible-errors-ruby/issues",
     "changelog_uri" => "https://github.com/airouter-dev/openai-compatible-errors-ruby/blob/main/CHANGELOG.md",
     "documentation_uri" => "https://github.com/airouter-dev/openai-compatible-errors-ruby#readme",
-    "homepage_uri" => "https://github.com/airouter-dev/openai-compatible-errors-ruby",
+    "homepage_uri" => "https://ai-router.dev/",
     "source_code_uri" => "https://github.com/airouter-dev/openai-compatible-errors-ruby",
     "rubygems_mfa_required" => "true"
   }

@@ -2,6 +2,13 @@
 
 All notable changes to this gem are documented here.
 
+## [0.1.2] - 2026-08-09
+
+Metadata release.
+
+- Point the RubyGems Homepage metadata to the AI-ROUTER gateway landing page.
+- Keep source, documentation, changelog and issue links on the project repository.
+
 ## [0.1.1] - 2026-08-09
 
 Documentation release.
@@ -28,4 +35,5 @@ Initial public release.
 - Provide bounded recursive log sanitization with cycle detection.
 
 [0.1.1]: https://github.com/airouter-dev/openai-compatible-errors-ruby/releases/tag/v0.1.1
+[0.1.2]: https://github.com/airouter-dev/openai-compatible-errors-ruby/releases/tag/v0.1.2
 [0.1.0]: https://github.com/airouter-dev/openai-compatible-errors-ruby/releases/tag/v0.1.0
