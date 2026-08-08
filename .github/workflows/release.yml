@@ -1,0 +1,37 @@
+name: Push gem
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  push:
+    name: Build, verify and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      id-token: write
+    environment:
+      name: release
+      url: https://rubygems.org/gems/openai-compatible-errors
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Verify tag matches gem version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          bundle exec ruby -Ilib -e '
+            expected = "v#{OpenAICompatibleErrors::VERSION}"
+            abort "release tag must be #{expected}" unless ENV.fetch("RELEASE_TAG") == expected
+          '
+      - run: bundle exec rake test
+      - uses: rubygems/release-gem@v1

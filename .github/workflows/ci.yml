@@ -1,0 +1,44 @@
+name: Ruby CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Ruby ${{ matrix.ruby }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+          - "3.0"
+          - "3.1"
+          - "3.2"
+          - "3.3"
+          - "3.4"
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - run: bundle exec rake test
+      - run: gem build openai-compatible-errors.gemspec
+      - name: Install the built gem without network access
+        run: |
+          isolated_gem_home="${RUNNER_TEMP}/gem-home"
+          mkdir -p "${isolated_gem_home}"
+          GEM_HOME="${isolated_gem_home}" GEM_PATH="${isolated_gem_home}" \
+            gem install --local openai-compatible-errors-*.gem --no-document
+          GEM_HOME="${isolated_gem_home}" GEM_PATH="${isolated_gem_home}" \
+            ruby -ropenai_compatible_errors -e \
+            'abort "smoke failed" unless OpenAICompatibleErrors.normalize_error({ status: 429 }).category == :rate_limit'
